@@ -61,6 +61,7 @@ jobs:
         run: yarn
 
       - name: Build branch
+        shell: bash
         run: |
           ${{ needs.env_name.outputs.build_script }}
 
