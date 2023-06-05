@@ -58,7 +58,7 @@ jobs:
     
       - name: Yarn install
         shell: bash
-        run: yarn install --immutable
+        run: yarn
 
       - name: Build branch
         run: |
