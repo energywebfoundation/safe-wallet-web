@@ -62,9 +62,8 @@ jobs:
 
       - name: Build branch
         shell: bash
-        run: |
-          ${{ needs.env_name.outputs.build_script }}
-
+        run: yarn build && yarn export
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
