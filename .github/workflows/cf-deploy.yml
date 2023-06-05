@@ -22,7 +22,7 @@ jobs:
         id: env_name 
         run: |
           echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "dev" ]; then
+          if [ "${{ github.ref }}" = "feat/cicd" ]; then
             echo "::set-output name=env_name::dev"
             echo "::set-output name=build_script::'yarn build && yarn export'"
           elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
