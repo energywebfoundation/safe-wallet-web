@@ -75,7 +75,7 @@ jobs:
           aws s3 rm s3://${{ secrets.BUCKET_NAME }} --recursive
       - name: Upload to bucket
         run: |
-          aws s3 cp dist s3://${{ secrets.BUCKET_NAME }} --recursive
+          aws s3 cp out s3://${{ secrets.BUCKET_NAME }} --recursive
       - name: Invalidate CloudFront # cloudfront caches s3 content so after each deployment, it needs to be cleared.
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/*"
