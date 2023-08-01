@@ -4,7 +4,8 @@ on:
   push:
     branches:
       [
-        'feat/cicd'
+        'dev',
+        'main'
       ]
 jobs:
   cancel-previous:
@@ -22,7 +23,7 @@ jobs:
         id: env_name 
         run: |
           echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "refs/heads/feat/cicd" ]; then
+          if [ "${{ github.ref }}" = "refs/heads/dev" ]; then
             echo "::set-output name=env_name::dev"
             echo "::set-output name=build_script::'yarn build && yarn export'"
           elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
@@ -76,6 +77,10 @@ jobs:
       - name: Upload to bucket
         run: |
           aws s3 cp out s3://${{ secrets.BUCKET_NAME }} --recursive
+          # Upload all HTML files again but w/o an extention so that URLs like /welcome open the right page
+          for file in $(find . -name '*.html' | sed 's|^\./||'); do
+              aws s3 cp ${file%} s3://${{ secrets.BUCKET_NAME }}/${file%.*} --content-type 'text/html'
+          done          
       - name: Invalidate CloudFront # cloudfront caches s3 content so after each deployment, it needs to be cleared.
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/*"
