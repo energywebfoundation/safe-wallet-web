@@ -57,7 +57,12 @@
   --onboard-wallet-button-background-hover: var(--color-background-light);
   --onboard-wallet-button-background-active: var(--color-background-light);
   /* Needs to be brighter than var(--color-primary-main) to compensate for shadow blur */
-  --onboard-wallet-button-box-shadow-hover: 0 0 2px #00fd00;
+  --onboard-wallet-button-box-shadow-hover: 0 0 2px rgba(187, 117, 203, 1);
+  --onboard-wallet-button-background-hover: rgba(187, 117, 203, 0.5);
+  --onboard-wallet-button-background-active: rgba(187, 117, 203, 0.5);
+
+  /*--color-primary-dark: rgba(164, 102, 255, 1);*/
+  /*--color-primary-main: rgba(187, 117, 203, 1);*/
 
   /* Fonts */
   --onboard-font-family-normal: DM Sans, sans-serif;
