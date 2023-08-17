@@ -62,6 +62,30 @@ jobs:
         run: yarn
 
       - name: Build branch
+        env:
+          # Latest supported safe version, used for upgrade prompts
+          NEXT_PUBLIC_SAFE_VERSION: 1.3.0
+          NEXT_PUBLIC_GATEWAY_URL_PRODUCTION: https://gsafe-svc.energyweb.org/cgw
+          # Flag to switch to the production environment (redirect urls, gateway url, etc)
+          NEXT_PUBLIC_IS_PRODUCTION: true
+          NEXT_PUBLIC_INFURA_TOKEN:
+          # infura token used by Safe Apps
+          NEXT_PUBLIC_SAFE_APPS_INFURA_TOKEN:
+          # Transaction simulation
+          NEXT_PUBLIC_TENDERLY_SIMULATE_ENDPOINT_URL:
+          NEXT_PUBLIC_TENDERLY_PROJECT_NAME:
+          NEXT_PUBLIC_TENDERLY_ORG_NAME:
+          ### Optional variables ###
+          # These variables are required only if you require a certain feature in the interface (e.g. Portis wallet)
+          # Or overwrite the fallback values (set a different WalletConnect bridge)
+          # Access keys
+          NEXT_PUBLIC_SENTRY_DSN:
+          NEXT_PUBLIC_BEAMER_ID:
+          # Wallet specific variables
+          NEXT_PUBLIC_WC_BRIDGE:
+          NEXT_PUBLIC_FORTMATIC_KEY:
+          NEXT_PUBLIC_PORTIS_KEY:
+          NEXT_PUBLIC_CYPRESS_MNEMONIC:
         shell: bash
         run: yarn build && yarn export
         
